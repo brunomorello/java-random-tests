@@ -21,13 +21,13 @@ public class CustomerManager {
         }
     }
 
+    // Generating an OOM error
     public Optional<Customer> getCustomer() {
         if (lastProcessedId + 1 > nextAvailableId) {
             lastProcessedId++;
             return Optional.of(customerList.get(0));
         }
         return Optional.empty();
-
         // Solution:
 //        synchronized (customerList) {
 //            if (customerList.size() > 0) {
