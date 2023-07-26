@@ -1,4 +1,4 @@
-package softleak;
+package com.bmo.softleak;
 
 public class CustomerHarness {
     public static void main(String[] args) {
