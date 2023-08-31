@@ -3,6 +3,8 @@ package com.bmo.reflection;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Introduction {
 
@@ -31,7 +33,15 @@ public class Introduction {
                     "class name %s - class package name %s", clazz.getSimpleName(), clazz.getPackageName()
             ));
 
+            if (clazz.isInterface()) {
+                Class<?> superclass = clazz.getSuperclass();
+                if (superclass != null)
+                    System.out.println(String.format("super class %s of class %s", superclass.getSimpleName(), clazz.getSimpleName()));
+            }
+
             Class<?>[] clazzInterfaces = clazz.getInterfaces();
+
+            String[] x = new String[clazzInterfaces.length];
 
             for (Class<?> interfaceImplemented : clazzInterfaces) {
                 System.out.println(
@@ -39,12 +49,15 @@ public class Introduction {
                 );
             }
 
-            System.out.println(String.format("class %s - type %s", clazz.getSimpleName(), clazz.getTypeName()));
-            System.out.println(String.format("class %s is array %b", clazz.getSimpleName(), clazz.isArray()));
-            System.out.println(String.format("class %s is primitive %b", clazz.getSimpleName(), clazz.isPrimitive()));
-            System.out.println(String.format("class %s is enum %b", clazz.getSimpleName(), clazz.isEnum()));
-            System.out.println(String.format("class %s is interface %b", clazz.getSimpleName(), clazz.isInterface()));
-            System.out.println(String.format("class %s is anonymous %b", clazz.getSimpleName(), clazz.isAnonymousClass()));
+//            if (clazz.getPackageName().contains("com.sun") || clazz.getPackageName().contains("java") || clazz.getPackageName().contains("javax") || clazz.getPackageName().contains("jdk") || clazz.getPackageName().contains("org.w3c") || clazz.getPackageName().contains("org.xml")) {
+//                System.out.println(String.format("class %s - is jdk", clazz.getSimpleName()));
+//            }
+//            System.out.println(String.format("class %s - type %s", clazz.getSimpleName(), clazz.getTypeName()));
+//            System.out.println(String.format("class %s is array %b", clazz.getSimpleName(), clazz.isArray()));
+//            System.out.println(String.format("class %s is primitive %b", clazz.getSimpleName(), clazz.isPrimitive()));
+//            System.out.println(String.format("class %s is enum %b", clazz.getSimpleName(), clazz.isEnum()));
+//            System.out.println(String.format("class %s is interface %b", clazz.getSimpleName(), clazz.isInterface()));
+//            System.out.println(String.format("class %s is anonymous %b", clazz.getSimpleName(), clazz.isAnonymousClass()));
 
             System.out.println("\n\n");
         }
